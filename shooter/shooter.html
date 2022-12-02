@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<title>Star shooter</title>
+<meta name="description" content="Star shooter">
+<meta http-equiv="Content-language" content="en">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="Stylesheet" href="shooter.css">
+<script src="shooter.js"></script>
+
+</head>
+
+<body class="body" onclick="skudlyd()">
+    <div class="main"></div>
+
+    <div class="area" >
+        <ul class="circles">
+                <li class="nord"><img src="assets/Images/RocketN.png"></li>
+                <li class="nø"><img src="assets/Images/RocketNØ.png"></li>
+                <li class="sø"><img src="assets/Images/RocketSØ.png"></li>
+                <li class="alien"><img src="assets/Images/Alien.png"></li>
+                
+        </ul>
+    </div >
+
+    <container>
+       <div>
+                  <h1 id="antal" class="antal">Ramt:</h1>
+                  <h1 id="tid" class="tid">Tid tilbage: </h1>
+                  <h1 id="done" class="done">Du ramte </h1>
+                  <button id="retry" class="retry" onClick="window.location.reload();">Prøv igen</button>
+       </div>
+
+    </container>
+    
+		<div class="popup" id="id1">     
+            <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1045613197031374848/shooter.png" onclick="document.getElementById('id1').style.display = 'none'; start()">
+                </div>
+
+<div>
+
+
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="1" class="point1" onclick="ramt(); document.getElementById('1').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="2" class="point2" onclick="ramt(); document.getElementById('2').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="3" class="point3" onclick="ramt(); document.getElementById('3').style.display = 'none'">  
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="4" class="point4" onclick="ramt(); document.getElementById('4').style.display = 'none'"> 
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="5" class="point5" onclick="ramt(); document.getElementById('5').style.display = 'none'"> 
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="6" class="point6" onclick="ramt(); document.getElementById('6').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="7" class="point7" onclick="ramt(); document.getElementById('7').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="8" class="point8" onclick="ramt(); document.getElementById('8').style.display = 'none'">  
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="9" class="point9" onclick="ramt(); document.getElementById('9').style.display = 'none'"> 
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="10" class="point10" onclick="ramt(); document.getElementById('10').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="11" class="point11" onclick="ramt(); document.getElementById('11').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="12" class="point12" onclick="ramt(); document.getElementById('12').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="13" class="point13" onclick="ramt(); document.getElementById('13').style.display = 'none'">  
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="14" class="point14" onclick="ramt(); document.getElementById('14').style.display = 'none'"> 
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="15" class="point15" onclick="ramt(); document.getElementById('15').style.display = 'none'"> 
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="16" class="point16" onclick="ramt(); document.getElementById('16').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="17" class="point17" onclick="ramt(); document.getElementById('17').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="18" class="point18" onclick="ramt(); document.getElementById('18').style.display = 'none'">  
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="19" class="point19" onclick="ramt(); document.getElementById('19').style.display = 'none'"> 
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="20" class="point20" onclick="ramt(); document.getElementById('20').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="21" class="point21" onclick="ramt(); document.getElementById('21').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="22" class="point22" onclick="ramt(); document.getElementById('22').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="23" class="point23" onclick="ramt(); document.getElementById('23').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="24" class="point24" onclick="ramt(); document.getElementById('24').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="25" class="point25" onclick="ramt(); document.getElementById('25').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="26" class="point26" onclick="ramt(); document.getElementById('26').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="27" class="point27" onclick="ramt(); document.getElementById('27').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="28" class="point28" onclick="ramt(); document.getElementById('28').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="29" class="point29" onclick="ramt(); document.getElementById('29').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="30" class="point30" onclick="ramt(); document.getElementById('30').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="31" class="point31" onclick="ramt(); document.getElementById('31').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="32" class="point32" onclick="ramt(); document.getElementById('32').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="33" class="point33" onclick="ramt(); document.getElementById('33').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="34" class="point34" onclick="ramt(); document.getElementById('34').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="35" class="point35" onclick="ramt(); document.getElementById('35').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="36" class="point36" onclick="ramt(); document.getElementById('36').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="37" class="point37" onclick="ramt(); document.getElementById('37').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="38" class="point38" onclick="ramt(); document.getElementById('38').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="39" class="point39" onclick="ramt(); document.getElementById('39').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="40" class="point40" onclick="ramt(); document.getElementById('40').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="41" class="point41" onclick="ramt(); document.getElementById('41').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="42" class="point42" onclick="ramt(); document.getElementById('42').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="43" class="point43" onclick="ramt(); document.getElementById('43').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="44" class="point44" onclick="ramt(); document.getElementById('44').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="45" class="point45" onclick="ramt(); document.getElementById('45').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="46" class="point46" onclick="ramt(); document.getElementById('46').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="47" class="point47" onclick="ramt(); document.getElementById('47').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="48" class="point48" onclick="ramt(); document.getElementById('48').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="49" class="point49" onclick="ramt(); document.getElementById('49').style.display = 'none'">
+    <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038066958479925248/star.png" id="50" class="point50" onclick="ramt(); document.getElementById('50').style.display = 'none'">
+</div>
+
+
+    <a href="/allespil.html" class="tilbage">Tilbage</a>
+
+</body>
+</html>

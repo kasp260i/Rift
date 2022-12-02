@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sætte width til enhedens bredde og sætte det "normale" zoom lavel til 1  -->
+    <title>Star clicker</title> <!-- Siden tittel -->
+    <link href="style.css" rel="stylesheet" type="text/css"/> <!-- liner css -->
+		<link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1026804505351827549/1035464865596317756/Nether_Star.gif"> <!-- sætter billedet i på fanen-->
+		<script src="script.js"></script> <!-- linker javascript -->
+		<audio autoplay="true" loop="true" src="/assets/Sounds/forside.mp3" id="myAudio"></audio>
+  </head>
+  
+	<body oncontextmenu="return false;">
+
+		<div class="popup" id="id1">     
+            <img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038058391920181268/star-clicker-tutorial.png" onclick="document.getElementById('id1').style.display = 'none'">
+                </div>
+		<a class="tilbage" href="/allespil.html" >Tilbage</a>
+   <div class="main"></div>
+   
+                <li class="nø"><img src="Images/bg/RocketNØ.png"></li>
+                <li class="sø"><img src="Images/bg/RocketSØ.png"></li>
+                <li class="alien"><img src="Images/bg/Alien.png"></li>
+       
+
+		<center> <!-- Gør så alt er i midten-->
+			<img src="https://cdn.discordapp.com/attachments/1026804505351827549/1038033794629902387/goldstar.png" id="clickButton" onclick="increment()"> <!-- the image you have to click -->
+
+			<div id="info"> <!-- Har der hvor man kan se hvor mange stjerne man har, i <span> tags fordi nummeret og derfor bredden bliver størrer -->
+				<p id="starCounter" class="hvidfarve">Stars = <span id="showstars" class="number">0</span></p> <!-- Viser hvor mange stjerne man har -->
+			</div>
+			
+			<!-- Alle ting der kan købes (Resten af koden er meget ens så har kun kommentar på første del)-->
+			<div class="itemContainer"> 
+				<div class="item"> <!-- en enkelt opgradering -->
+					<div class="containerImage"> <!--indeholder opgraderings knappen -->
+						<img src="Images/Items/astronaut.png" id="astronautImage" class="itemImage" style="width:180px;height:180px;">
+
+						<div class="buyButtonContainer"> <!-- Indeholder købsknappen -->
+							<button onclick="buyastronaut()" class="buyButton">Buy</button>
+						</div>
+					</div>
+					<div class="containerText"> <!-- Alt info omkring opgraderingen -->
+						<p class="hvidfarve">Astronauts: <span id="astronautNum">0</span></p>
+
+						<p class="hvidfarve">Cost: <span id="astronautCost">15</span></p>
+
+						<p class="hvidfarve">+1 stars per click</p>
+					</div>
+				</div>
+
+				<div class="item"> 
+					<div class="containerImage"> 
+						<img src="Images/Items/rocket.png" id="rocketImage" class="itemImage" style="width:180px;height:180px;">
+
+						<div class="buyButtonContainer"> 
+							<button onclick="buyrocket()" class="buyButton">Buy</button>
+						</div>
+					</div>
+
+					<div class="containerText"> 
+						<p class="hvidfarve">Rockets:  <span id="rocketNum">0</span></p>
+
+						<p class="hvidfarve">Cost: <span id="rocketCost">500</span></p>
+
+						<p class="hvidfarve">+10 stars per second</p>
+					</div>
+				</div>
+
+				<div class="item"> 
+					<div class="containerImage"> 
+						<img src="Images/Items/starsucker.png" id="starsuckerImage" class="itemImage" style="width:180px;height:180px">
+				
+						<div class="buyButtonContainer"> 
+							<button onclick="buystarsucker()" class="buyButton">Buy</button>
+						</div>
+					</div>
+
+					<div class="containerText"> 
+						<p class="hvidfarve">Starsuckers:  <span id="starsuckerNum">0</span></p>
+
+						<p class="hvidfarve">Cost: <span id="starsuckerCost">10.000</span></p>
+
+						<p class="hvidfarve">+200 stars per second</p>
+					</div>
+				</div>
+				
+				<div class="item"> 
+					<div class="containerImage"> 
+						<img src="Images/Items/alien.png" class="itemImage" style="width:180px;height:180px">
+						
+						<div class="buyButtonContainer"> 
+							<button onclick="buyalien()" class="buyButton">Buy</button>
+						</div>
+					</div>
+
+					<div class="containerText"> 
+						<p class="hvidfarve">Aliens: <span id="alienNum">0</span></p>
+
+						<p class="hvidfarve">Cost: <span id="alienCost">1.000.000</span></p>
+
+						<p class="hvidfarve">+10.000 stars per second</p>
+					</div>
+				</div>
+				<input type="checkbox" name="un-mute" id="un-mute">
+				<label for="un-mute" class="unmute">
+					<img title="Un-mute" src="/assets/Images/Mute.png" onClick="playMyAudio()">
+				</label>
+				<label for="un-mute" class="mute">
+					<img title="Mute" src="/assets/Images/Unmute.png" onClick="pauseMyAudio()">
+					
+				</label>
+			</div>
+			</div>
+		</center>
+  </body>
+</html>
