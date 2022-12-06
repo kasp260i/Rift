@@ -7,6 +7,7 @@ document.addEventListener("keydown", function(event) {
         rocket.canFlap = true;
         startText.isActive = false;
         flapText.isActive = true;
+        document.getElementById('id1').style.display = 'none'
         return; 
     }
 
@@ -39,6 +40,7 @@ document.addEventListener("keydown", function(event) {
     }
 
 });
+
 
 document.addEventListener("keyup", function(event) {
 

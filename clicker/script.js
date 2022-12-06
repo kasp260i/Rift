@@ -15,6 +15,7 @@ var aliens = 0;
 
 
 
+
 // Bliver kaldet når man trykker på baguette
 function increment() {
 	stars += starsPerClick; // tilføjre "Startperclick" til antallet af stars
@@ -52,8 +53,6 @@ function buyastronaut() {
 
 
 		starsPerClick += 1; // Denne opgradering gør så man får flere stjerne i sekundet, nogle gør man får fler når man klikker
-
-	
 	}	
 }
 

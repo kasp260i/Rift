@@ -48,6 +48,7 @@ let gameOverText = new TextObject (
 gameOverText.isActive = false;
 
 
+
 // make a supercoin
 let superCoins = [];
 
