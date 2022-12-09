@@ -9,6 +9,11 @@
 <script src="myscripts.js"></script>
 <link rel="icon" type="image/png" href="/assets/Images/Alien.png">
 <audio autoplay="true" loop="true" src="assets/Sounds/forside.mp3" id="myAudio"></audio>
+<script>
+    if (navigator.userAgent.match(/iPhone|Android|Blackberry/)) {
+      window.location = "onlyweb.html";
+    }
+  </script>
 
 </head>
 
@@ -45,4 +50,5 @@
 
 
 </body>
+
 </html>
