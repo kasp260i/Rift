@@ -598,6 +598,41 @@ cursor: url('assets/Images/Cursor.png'),auto;
 }
 
 
+input#un-mute {
+    display: none;
+    size: 10px;
+  }
+  
+  .unmute img {
+    display: none;
+    width: 50px;
+    height: 50px;
+  }
+  
+  input#un-mute:checked ~ .unmute img {
+    display: initial;
+  }
+  
+  input#un-mute:checked ~ .mute img {
+    display: none;
+  }
+
+.unmute{
+    position: absolute;
+	transform: translate(-50%, -50%);
+    top:96%;
+    left: 4%;
+}
+
+
+.mute{
+    position: absolute;
+	transform: translate(-50%, -50%);
+    top:96%;
+    left: 4%;
+}
+
+
 .antal{
     position: absolute;
     transform: translate(-50%,-50%);

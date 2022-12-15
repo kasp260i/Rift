@@ -7,6 +7,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="Stylesheet" href="shooter.css">
 <script src="shooter.js"></script>
+<audio autoplay="true" loop="true" src="assets/Sounds/forside.mp3" id="myAudio"></audio>
 
 </head>
 
@@ -94,6 +95,17 @@
 
 
     <a href="/Rift/allespil.html" class="tilbage">Tilbage</a>
+
+    <div id="lyden">
+    <input type="checkbox" name="un-mute" id="un-mute">
+<label for="un-mute" class="unmute">
+    <img title="Un-mute" src="assets/Images/Mute.png" onClick="playMyAudio()">
+</label>
+<label for="un-mute" class="mute">
+    <img title="Mute" src="assets/Images/Unmute.png" onClick="pauseMyAudio()">
+    
+</label>
+</div>
 
 </body>
 </html>

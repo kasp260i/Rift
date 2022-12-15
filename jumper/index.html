@@ -3,8 +3,7 @@
 <head>
 
 
-
-	<title>Jump</title>
+	<title>Star Jumper</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="Stylesheet" href="jumper.css">
 </head>
@@ -56,6 +55,21 @@
 
 	<script>
 
+/***
+ *    ...........__....__.........______.........__.......__.........______..........______.........__.......__........________.........______..
+ *    ..........|..\../..\......./......\.......|..\...../..\......./......\......../......\.......|..\...../..\......|........\......./......\.
+ *    ..........|.$$./..$$......|..$$$$$$\......|.$$\.../..$$......|..$$$$$$\......|..$$$$$$\......|.$$\.../..$$......|.$$$$$$$$......|..$$$$$$\
+ *    ..........|.$$/..$$.......|.$$..|.$$......|.$$$\./..$$$......|.$$.__\$$......|.$$__|.$$......|.$$$\./..$$$......|.$$__..........|.$$___\$$
+ *    ..........|.$$..$$........|.$$..|.$$......|.$$$$\..$$$$......|.$$|....\......|.$$....$$......|.$$$$\..$$$$......|.$$..\..........\$$....\.
+ *    ..........|.$$$$$\........|.$$..|.$$......|.$$\$$.$$.$$......|.$$.\$$$$......|.$$$$$$$$......|.$$\$$.$$.$$......|.$$$$$.........._\$$$$$$\
+ *    .__.......|.$$.\$$\.......|.$$__/.$$......|.$$.\$$$|.$$......|.$$__|.$$......|.$$..|.$$......|.$$.\$$$|.$$......|.$$_____.......|..\__|.$$
+ *    |..\......|.$$..\$$\.......\$$....$$......|.$$..\$.|.$$.......\$$....$$......|.$$..|.$$......|.$$..\$.|.$$......|.$$.....\.......\$$....$$
+ *    .\$$.......\$$...\$$........\$$$$$$........\$$......\$$........\$$$$$$........\$$...\$$.......\$$......\$$.......\$$$$$$$$........\$$$$$$.
+ *    ..........................................................................................................................................
+ *    ..........................................................................................................................................
+ *    ..........................................................................................................................................
+ */
+
 		var ua = navigator.userAgent;
 		var isIE = ua.match("MSIE");
 		var bTouch = (ua.indexOf("(iP")==-1 && ua.indexOf("Android")==-1 && ua.indexOf("BlackBerry")==-1 && ua.indexOf("HTC")==-1 && ua.indexOf("PlayBook")==-1 && ua.indexOf("webOS")==-1 && ua.indexOf("IEMobile")==-1 && ua.indexOf("Silk")==-1)?false:true;
@@ -65,6 +79,7 @@
         var fjederlyd= new Audio('assets/Sounds/fjederlyd.mp3');
 		var hop = new Audio('assets/Sounds/hoplyd.mp3');
 		var troll = new Audio('assets/Sounds/banan.mp3');
+		var taberlyd = new Audio('assets/Sounds/taberlyd.mp3');
 
 
 		if ( !Array.prototype.forEach ) {
@@ -75,7 +90,7 @@
 		  }
 		}
 
-		// RequestAnimFrame: a browser API for getting smooth animations
+		// RequestAnimFrame: Browser api for bedre animationer
 		window.requestAnimFrame = (function() {
 			return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
 			function(callback) {
@@ -93,7 +108,7 @@
 		canvas.width = width;
 		canvas.height = height;
 
-		//Variables for game
+		//SPillets generelle variabler
 		var platforms = [],
 			image = document.getElementById("sprite"),
 			player, platformCount = 10,
@@ -104,12 +119,12 @@
 			menuloop, broken = 0,
 			dir, score = 0, firstRun = true;
 
-		//Base object
+	
 		var Base = function() {
 			this.height = 5;
 			this.width = width;
 
-			//Sprite clipping
+			//Sprite clipping, jeg har aldrig prøvet det
 			this.cx = 0;
 			this.cy = 614;
 			this.cwidth = 100;
@@ -129,7 +144,7 @@
 
 		var base = new Base();
 
-		//Player object
+		//Vores spiller
 		var Player = function() {
 			this.vy = 11;
 			this.vx = 0;
@@ -141,7 +156,7 @@
 			this.width = 55;
 			this.height = 40;
 
-			//Sprite clipping
+			//Mere sprite clipping
 			this.cx = 0;
 			this.cy = 0;
 			this.cwidth = 110;
@@ -152,7 +167,7 @@
 			this.x = width / 2 - this.width / 2;
 			this.y = height;
 
-			//Function to draw it
+			//Tegner vores spiller
 			this.draw = function() {
 				try {
 					if (this.dir == "right") this.cy = 121;
@@ -176,7 +191,7 @@
 
 		player = new Player();
 
-		//Platform class
+		//Plotform klassen
 
 		function Platform() {
 			this.width = 60;
@@ -197,7 +212,7 @@
 			this.cwidth = 105;
 			this.cheight = 31;
 
-			//Function to draw it
+			//Tagner platform
 			this.draw = function() {
 				try {
 
@@ -212,12 +227,12 @@
 				} catch (e) {}
 			};
 
-			//Platform types
+			//Platform typer
 			//1: Normal
-			//2: Moving
-			//3: Breakable (Go through)
-			//4: Vanishable
-			//Setting the probability of which type of platforms should be shown at what score
+			//2: Bevægende
+			//3: Den man bare kommer igennem
+			//4: Den der forsvinder efter 1 hop
+			//Sætter hvilke platforme der kan være der inden for de forkslevlige scores
 			if (score >= 5000) this.types = [2, 3, 3, 3, 4, 4, 4, 4];
 			else if (score >= 2000 && score < 5000) this.types = [2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4];
 			else if (score >= 1000 && score < 2000) this.types = [2, 2, 2, 3, 3, 3, 3, 3];
@@ -227,7 +242,7 @@
 
 			this.type = this.types[Math.floor(Math.random() * this.types.length)];
 
-			//We can't have two consecutive breakable platforms otherwise it will be impossible to reach another platform sometimes!
+			//Der må ikke være 2 platforme i træk man ryger igennem, ellers vil der være umuligt at komme vidre hvis det sker
 			if (this.type == 3 && broken < 1) {
 				broken++;
 			} else if (this.type == 3 && broken >= 1) {
@@ -243,7 +258,7 @@
 			platforms.push(new Platform());
 		}
 
-		//Broken platform object
+		//Normalt vil der kommer en ny platform der replace den man ryger igennem så det ligner den går i stykker, men kunne ikke få sprite clipping til at være ordenlig så vi skorttede den
 		var Platform_broken_substitute = function() {
 			this.height = 30;
 			this.width = 70;
@@ -269,7 +284,7 @@
 
 		var platform_broken_substitute = new Platform_broken_substitute();
 
-		//Spring Class
+		//Vores fjeder
 		var spring = function() {
 			this.x = 0;
 			this.y = 0;
@@ -298,20 +313,18 @@
 		var Spring = new spring();
 
 		function init() {
-			//Variables for the game
+			//Basiclt vores restart function
 			document.getElementById("mainMenu").style.display = 'none';
 			var	dir = "left",
 				jumpCount = 0;
 
 			firstRun = false;
 
-			//Function for clearing canvas in each consecutive frame
-
 			function paintCanvas() {
 				ctx.clearRect(0, 0, width, height);
 			}
 
-			//Player related calculations and functions
+			//Udregner hvor vores spiller skal være ifht dens retning
 
 			function playerCalc() {
 
@@ -325,14 +338,14 @@
 					if (player.vy < -7 && player.vy > -15) player.dir = "right_land";
 				}
 
-				//Adding keyboard controls
+				//Sætter vores "movement keys" til a,d og pil til venstre og højre
 				document.onkeydown = function(e) {
 					var key = (isIE)?event.keyCode:e.keyCode;
 
-					if (key == 37) {
+					if (key == 37 || key==65) {
 						dir = "left";
 						player.isMovingLeft = true;
-					} else if (key == 39) {
+					} else if (key == 39 || key==68) {
 						dir = "right";
 						player.isMovingRight = true;
 					}
@@ -348,16 +361,16 @@
 				document.onkeyup = function(e) {
 					var key = (isIE)?event.keyCode:e.keyCode;
 
-					if (key == 37) {
+					if (key == 37 || key==65) {
 						dir = "left";
 						player.isMovingLeft = false;
-					} else if (key == 39) {
+					} else if (key == 39 || key==68) {
 						dir = "right";
 						player.isMovingRight = false;
 					}
 				};
 
-				//Accelerations produces when the user hold the keys
+				//Acceleration når spilleren holder en movement key inde
 				if (player.isMovingLeft === true) {
 					player.x += player.vx;
 					player.vx -= 0.15;
@@ -374,31 +387,32 @@
 					if (player.vx > 0) player.vx -= 0.1;
 				}
 
-				// Speed limits!
+				// max fart
 				if(player.vx > 8)
 					player.vx = 8;
 				else if(player.vx < -8)
 					player.vx = -8;
 
-				//console.log(player.vx);
+			
 
-				//Jump the player when it hits the base
+				//Får spillern til at hoppe når den rammer "base" som er bunden af banen
 				if ((player.y + player.height) > base.y && base.y < height) player.jump();
 
-				//Gameover if it hits the bottom
+				//Gameover hvis man misser platforme og derfor ryger ud af banen
 				if (base.y > height && (player.y + player.height) > height && player.isDead != "lol") player.isDead = true;
 
-				//Make the player move through walls
+				//GØr så spilleren kan gå "igennem" væggen
 				if (player.x > width) player.x = 0 - player.width;
 				else if (player.x < 0 - player.width) player.x = width;
 
-				//Movement of player affected by gravity
+				//Spillernn skal ryge ned fordi der jo er tyngdekraft
 				if (player.y >= (height / 2) - (player.height / 2)) {
 					player.y += player.vy;
 					player.vy += gravity;
 				}
 
-				//When the player reaches half height, move the platforms to create the illusion of scrolling and recreate the platforms that are out of viewport...
+				//Det er denne funktion der laver illusionen af at man kommer højere op
+			
 				else {
 					platforms.forEach(function(p, i) {
 
@@ -424,13 +438,13 @@
 					score++;
 				}
 
-				//Make the player jump when it collides with platforms
+				
 				collides();
 
 				if (player.isDead === true) gameOver();
 			}
 
-			//Spring algorithms
+			//Vores fjeder
 
 			function springCalc() {
 				var s = Spring;
@@ -449,7 +463,7 @@
 				}
 			}
 
-			//Platform's horizontal movement (and falling) algo
+			//Platformens horizontal movement
 
 			function platformCalc() {
 				var subs = platform_broken_substitute;
@@ -481,7 +495,7 @@
 			}
 
 			function collides() {
-				//Platforms
+				//Platform function der også får spiller til at hoppe
 				platforms.forEach(function(p, i) {
 					if (player.vy > 0 && p.state === 0 && (player.x + 15 < p.x + p.width) && (player.x + player.width - 15 > p.x) && (player.y + player.height > p.y) && (player.y + player.height < p.y + p.height)) {
 
@@ -500,7 +514,7 @@
 					}
 				});
 
-				//Springs
+				//Når man rammer en fjeder:
 				var s = Spring;
 				if (player.vy > 0 && (s.state === 0) && (player.x + 15 < s.x + s.width) && (player.x + player.width - 15 > s.x) && (player.y + player.height > s.y) && (player.y + player.height < s.y + s.height)) {
 					s.state = 1;
@@ -516,8 +530,9 @@
 				scoreText.innerHTML = "Højde: " + score + " KM";
 			}
 
-			function gameOver() {
+			function gameOver() { //Alt der skal ske når man taber
 				document.getElementById("scoreBoard").style.display = 'none'
+				taberlyd.play();
 				platforms.forEach(function(p, i) {
 					p.y -= 12;
 				});
@@ -532,14 +547,12 @@
 					hideScore();
 					player.isDead = "lol";
 
-					// pf end of game here...
-
 				}
 			}
 
-			//Function to update everything
+			//Function der kører vær frame og opdatere alle ting hele tiden
 
-			function update() {
+			function update() { 
 				paintCanvas();
 				platformCalc();
 
@@ -565,7 +578,7 @@
 			showScore();
 		}
 
-		function reset() {
+		function reset() {  //endnu en funktion der også reseter alt
 			hideGoMenu();
 			showScore();
 			document.getElementById("scoreBoard").style.display = 'block'
@@ -586,14 +599,14 @@
 			}
 		}
 
-		//Hides the menu
+		//GEmmer menuen når man starter
 		function hideMenu() {
 			var menu = document.getElementById("mainMenu");
 			menu.style.zIndex = -1;
 			if(navigator.userAgent.toLowerCase().indexOf("firefox") != -1 && navigator.userAgent.toLowerCase().indexOf("android") != -1)menu.style.display="none";// *ff
 		}
 
-		//Shows the game over menu
+		//Viser menu når der er gameover
 		function showGoMenu() {
 			var menu = document.getElementById("gameOverMenu");
 			menu.style.zIndex = 1;
@@ -603,7 +616,7 @@
 			scoreText.innerHTML = "Du fløj " + score + " KM!";
 		}
 
-		//Hides the game over menu
+		//GEmmer gameover menueen
 		function hideGoMenu() {
 			var menu = document.getElementById("gameOverMenu");
 			menu.style.zIndex = -1;
@@ -611,20 +624,20 @@
 			if(navigator.userAgent.toLowerCase().indexOf("firefox") != -1 && navigator.userAgent.toLowerCase().indexOf("android") != -1)menu.style.display="none";// *ff
 		}
 
-		//Show ScoreBoard
+		//Show SVIserscoreboard
 		function showScore() {
 			var menu = document.getElementById("scoreBoard");
 			menu.style.zIndex = 1;
 			if(navigator.userAgent.toLowerCase().indexOf("firefox") != -1 && navigator.userAgent.toLowerCase().indexOf("android") != -1)menu.style.display="block";// *ff
 		}
 
-		//Hide ScoreBoard
+		//Gammer scoreboard
 		function hideScore() {
 			var menu = document.getElementById("scoreBoard");
 			menu.style.zIndex = -1;
 			if(navigator.userAgent.toLowerCase().indexOf("firefox") != -1 && navigator.userAgent.toLowerCase().indexOf("android") != -1)menu.style.display="none";// *ff
 		}
-
+//Spiller hoppe funktion
 		function playerJump() {
 
 			if(bTouch)dir = Dir;
@@ -647,7 +660,7 @@
 				if (player.vy < -7 && player.vy > -15) player.dir = "right_land";
 			}
 
-			//Adding keyboard controls
+			//Mere om keyboard controls
 			document.onkeydown = function(e) {
 				var key = (isIE)?event.keyCode:e.keyCode;
 
@@ -681,7 +694,7 @@
 				}
 			};
 
-			//Accelerations produces when the user hold the keys
+			//Mere om acceleration
 			if (player.isMovingLeft === true) {
 				player.x += player.vx;
 				player.vx -= 0.15;
@@ -698,10 +711,10 @@
 				if (player.vx > 0) player.vx -= 0.1;
 			}
 
-			//Jump the player when it hits the base
+			//Får spillern til at hoppe når den rammer bunden
 			if ((player.y + player.height) > base.y && base.y < height) player.jump();
 
-			//Make the player move through walls
+			//Går sillern til at gå igennem væggen
 			if (player.x > width) player.x = 0 - player.width;
 			else if (player.x < 0 - player.width) player.x = width;
 
