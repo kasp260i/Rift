@@ -29,14 +29,100 @@ var starsuckers = 0;
 var aliens = 0;
 
 
+function check() {
+	let savedstars = JSON.parse(localStorage.getItem('stars'));
+	savedstars = Math.floor(savedstars);
+	// console.log('test load');
+	stars += savedstars;
 
+ 
+	// ASTRONAUTS
+	// *
+	
+	if(localStorage.getItem('astronauts')) {
+		let savedastronauts = JSON.parse(localStorage.getItem('astronauts'));
+		savedastronauts = Math.floor(savedastronauts);
+		astronauts += savedastronauts;
+		starsPerClick = astronauts * 1;
+	}
+
+	let savedastronautCost = JSON.parse(localStorage.getItem('astronautCost'));
+	savedastronautCost = Math.floor(savedastronautCost);
+	if(astronauts) {
+		astronautCost = savedastronautCost;
+	}
+	
+	document.getElementById("astronautNum").innerText = Math.ceil(astronauts);
+	document.getElementById("astronautCost").innerText = Math.ceil(astronautCost);
+
+
+	// ROCKETS
+	// *
+	if(localStorage.getItem('rockets')) {
+		let savedrockets = JSON.parse(localStorage.getItem('rockets'));
+		savedrockets = Math.floor(savedrockets);
+		rockets += savedrockets;
+		starsPerSecond += rockets * 10;
+	}
+
+	let savedrocketCost = JSON.parse(localStorage.getItem('rocketCost'));
+	savedrocketCost = Math.floor(savedrocketCost);
+	if(rockets) {
+		rocketCost = savedrocketCost;
+	}
+	
+	document.getElementById("rocketNum").innerText = Math.ceil(rockets);
+	document.getElementById("rocketCost").innerText = Math.ceil(rocketCost);
+
+
+	// STAR SUCKERS
+	// *
+	if(localStorage.getItem('starsuckers')) {
+		let savedstarsuckers = JSON.parse(localStorage.getItem('starsuckers'));
+		savedstarsuckers = Math.floor(savedstarsuckers);
+		starsuckers += savedstarsuckers;
+		starsPerSecond += starsuckers * 200;
+	}
+
+	let savedstarsuckerCost = JSON.parse(localStorage.getItem('starsuckerCost'));
+	savedstarsuckerCost = Math.floor(savedstarsuckerCost);
+	if(starsuckers) {
+		starsuckerCost = savedstarsuckerCost;
+	}
+	
+	document.getElementById("starsuckerNum").innerText = Math.ceil(starsuckers);
+	document.getElementById("starsuckerCost").innerText = Math.ceil(starsuckerCost);
+
+
+	// ALIENS
+	// *
+	if(localStorage.getItem('aliens')) {
+		let savedaliens = JSON.parse(localStorage.getItem('aliens'));
+		savedaliens = Math.floor(savedaliens);
+		aliens += savedaliens;
+		starsPerSecond += aliens * 10000;
+	}
+
+	let savedalienCost = JSON.parse(localStorage.getItem('alienCost'));
+	savedalienCost = Math.floor(savedalienCost);
+	if(aliens) {
+		alienCost = savedalienCost;
+	}
+	
+	document.getElementById("alienNum").innerText = Math.ceil(aliens);
+	document.getElementById("alienCost").innerText = Math.ceil(alienCost);
+
+
+	// console.log(savedastronauts, savedrockets, savedstarsuckers, savedaliens);
+}
 
 // Bliver kaldet når man trykker på baguette
 function increment() {
 	stars += starsPerClick; // tilføjre "Startperclick" til antallet af stars
 	document.getElementById("showstars").innerText = Math.ceil(stars); // Bruger DOM til at ændre numeret af stjerne i html
+	console.log('test inc' + stars);
 
-	
+	localStorage.setItem('stars', stars);
 }
 
 // Funktionen bliver kaldt i et interval
@@ -44,6 +130,9 @@ setInterval(function() {
 	stars += starsPerSecond; // Tilføjre starspersecond til antallet af stars
 	stars=Math.floor(stars)
 	document.getElementById("showstars").innerText = Math.ceil(stars); // Bruger DOM til at ændre numeret af stjerne i html
+
+	localStorage.setItem('stars', stars);
+	localStorage.setItem('stars-sec', starsPerSecond);
 }, 1000) // intervallet bliver kandt hver 1000ms (1 sekund)
 
 
@@ -68,6 +157,9 @@ function buyastronaut() {
 
 
 		starsPerClick += 1; // Denne opgradering gør så man får flere stjerne i sekundet, nogle gør man får fler når man klikker
+
+		localStorage.setItem('astronauts', astronauts);
+		localStorage.setItem('astronautCost', astronautCost);
 	}	
 }
 
@@ -92,6 +184,8 @@ function buyrocket() {
 
 		starsPerSecond += 10;
 
+		localStorage.setItem('rockets', rockets);
+		localStorage.setItem('rocketCost', rocketCost);
 	} 
 }
 
@@ -116,6 +210,8 @@ function buystarsucker() {
 
 		starsPerSecond += 200; 
 
+		localStorage.setItem('starsuckers', starsuckers);
+		localStorage.setItem('starsuckerCost', starsuckerCost);
 	} 
 }
 
@@ -140,16 +236,37 @@ function buyalien() {
 
 		starsPerSecond += 10000; 
 
+		localStorage.setItem('aliens', aliens);
+		localStorage.setItem('alienCost', alienCost);
 	}	
 }
 
 function playMyAudio(){
     document.getElementById("myAudio").play();
 }
-    function pauseMyAudio(){
+function pauseMyAudio(){
     document.getElementById("myAudio").pause();
-  }
+}
 
 
+function nulstil() {
+	//Generale stats
+	stars = 0;
+	starsPerSecond = 0;
+	starsPerClick = 1;
+	//Priser
+	astronautCost = 15;
+	rocketCost = 500;
+	starsuckerCost = 10000;
+	alienCost = 1000000;
+	//Antal
+	astronauts = 0;
+	rockets = 0;
+	starsuckers = 0;
+	aliens = 0;
 
 
+	localStorage.clear()
+	// localStorage.clear('stars');
+
+}

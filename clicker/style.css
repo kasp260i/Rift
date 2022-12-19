@@ -12,6 +12,10 @@ body, html {
   z-index: 3;
 }
 
+h2 {
+  font-size: 16px;
+}
+
 
 /* Store baguette */
 #clickButton {
@@ -281,12 +285,30 @@ input#un-mute {
     left: 4%;
 }
 
-.tilbage{
-    position: absolute;
+/* .tilbage{
+  position: absolute;
     left:1%;
     top: 1%;
 	color: white;
 	
+}
+
+.nustil{
+  color: white;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 90%;
+  left: 90%;
+
+  font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-size: 16px;
+} */
+
+.flexit {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
 .popup{
